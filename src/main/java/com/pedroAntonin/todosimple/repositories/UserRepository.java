@@ -10,5 +10,4 @@ import com.pedroAntonin.todosimple.Models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    
 }
