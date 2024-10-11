@@ -1,5 +1,6 @@
 package com.pedroAntonin.todosimple.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -24,6 +25,11 @@ public class TaskService {
         Optional<Task> task = this.taskRepository.findById(id);
         return task.orElseThrow(() -> new RuntimeException(
             "Tarefa não encontrada! id: " + id + ", Tipo: " + Task.class.getName()));
+    }
+
+    public List<Task> findAllByUserId(Long userId) {
+        List<Task> tasks = this.taskRepository.FindByUser_Id(userId);
+        return tasks;   
     }
 
     @Transactional
