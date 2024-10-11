@@ -28,8 +28,8 @@ public class TaskService {
     }
 
     public List<Task> findAllByUserId(Long userId) {
-        List<Task> tasks = this.taskRepository.FindByUser_Id(userId);
-        return tasks;   
+        List<Task> tasks = this.taskRepository.findByuser_id(userId);
+        return tasks;
     }
 
     @Transactional
