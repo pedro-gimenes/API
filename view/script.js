@@ -7,10 +7,10 @@ function HideLoader() {
 function show(tasks) {
     
     let tab = `<thead>
-            <th scope="col">#<th>
-            <th scope="col">Description<th>
-            <th scope="col">Username<th>
-            <th scope="col">User Id<th>
+            <th scope="col">#</th>
+            <th scope="col">Description</th>
+            <th scope="col">Username</th>
+            <th scope="col">User Id</th>
         </thead>`;
 
     for (let task of tasks) {
