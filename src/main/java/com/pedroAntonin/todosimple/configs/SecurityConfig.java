@@ -19,6 +19,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.pedroAntonin.todosimple.Security.JWTAuthenticationFilter;
+import com.pedroAntonin.todosimple.Security.JWTUtil;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -28,6 +31,9 @@ public class SecurityConfig {
     
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
     private static final String[] PUBLIC_MATCHERS = {
         "/"
@@ -53,6 +59,10 @@ public class SecurityConfig {
                         .antMatchers(PUBLIC_MATCHERS).permitAll()
                         .anyRequest().authenticated().and()
                         .authenticationManager(authenticationManager);
+        
+        http addFilter(new JWTAuthenticationFilter(this.authenticationManager, this.jwtUtil));
+        http.addFilter(new JWTAuthorizationFilter(this.authenticationManager, this.jwtUtil,
+                        this.userDetailsService));
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         
