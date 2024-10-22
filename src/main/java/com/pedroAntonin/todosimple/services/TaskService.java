@@ -38,8 +38,12 @@ public class TaskService {
         return task;
     }
 
-    public List<Task> findAllByUserId(Long userId) {
-        List<Task> tasks = this.taskRepository.findByUser_Id(userId);
+    public List<TaskProjection> findAllByUser() {
+        UserSpringSecurity userSpringSecurity = UserService.authenticated();
+        if(Objects.isNull(userSpringSecurity))
+            throw new AuthhorizationException("Acesso negado!");
+
+        List<TaskProjection> tasks = this.taskRepository.findByUser_Id(userSpringSecurity.getId());
         return tasks;
     }
 
@@ -63,7 +67,8 @@ public class TaskService {
         return this.taskRepository.save(newObj);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
+        findById(id);
         try {
             this.taskRepository.deleteById(id);
         } catch (Exception e) {
