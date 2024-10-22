@@ -1,4 +1,5 @@
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class UserSpringSecurity implements UserDetails {@Override
+public class UserSpringSecurity implements UserDetails {
     
     private Long id;
     private String username;
@@ -50,7 +51,7 @@ public class UserSpringSecurity implements UserDetails {@Override
         return true;
     }
     
-    public boolean hasRole(ProfileEnum) {
+    public boolean hasRole(ProfileEnum profileEnum) {
         return getAuthorities().contains(new SimpleGrantedAuthority(profileEnum.getDescription));
     }
 }

@@ -15,6 +15,9 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
+
+    public ErrorResponse(int value, String validation_error_Check_errors_field_for_d) {
+    }
     private final int status;
     private final String message;
     private String stackTrace;

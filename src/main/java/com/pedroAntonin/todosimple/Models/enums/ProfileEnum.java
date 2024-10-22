@@ -16,14 +16,15 @@ public enum ProfileEnum {
     private Integer code;
     private String description;
 
-    public static ProfileEnum ToEnum(Integer code) {
+    public static ProfileEnum toEnum(Integer code) {
         if(Objects.isNull(code))
-        return null;
+            return null;
 
         for (ProfileEnum x : ProfileEnum.values()) {
             if (code.equals(x.getcode()))
-            return x;
+                return x;
         }
-        Thrown new IllegalArgumentException("Invalid code: " + code);
+        
+        throw new IllegalArgumentException("Invalid code: " + code);
     }
 }
