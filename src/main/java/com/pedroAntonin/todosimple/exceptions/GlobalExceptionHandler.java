@@ -1,7 +1,6 @@
 package com.pedroAntonin.todosimple.exceptions;
 
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
