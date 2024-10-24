@@ -5,12 +5,9 @@ function HideLoader() {
 }
 
 function show(tasks) {
-    
     let tab = `<thead>
             <th scope="col">#</th>
             <th scope="col">Description</th>
-            <th scope="col">Username</th>
-            <th scope="col">User Id</th>
         </thead>`;
 
     for (let task of tasks) {
@@ -18,8 +15,6 @@ function show(tasks) {
             <tr>
                 <td scope="row">${task.id}</td>
                 <td>${task.description}</td>
-                <td>${task.user.username}</td>
-                <td>${task.user.id}</td>
             </tr>
         `;
     }
@@ -27,14 +22,23 @@ function show(tasks) {
     document.getElementById("tasks").innerHTML = tab;
 }
 
-async function getAPi(url) {
-    const response = await fetch(url, { method: "GET" });
+async function getTasks() {
+    let Key = "Authorization";
+    const response = await fetch(tasksEndPoint, {
+        method: "GET",
+        headers: new Headers({
+            Authorization: localStorage.getItem(Key),
+        })
+    });
 
     var data = await response.json();
     console.log(data);
     if(response) HideLoader();
     show(data);
-}
+    }
+    document.addEventListener("DOMContentLoaded", function (event) {
+        if(!localStorage.getItem("Authorization"))
+            window.location = "/view/login.html";
+    });
 
-getAPi(url);
-
+    getTasks();
